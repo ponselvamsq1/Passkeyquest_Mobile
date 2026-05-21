@@ -10,7 +10,7 @@ public class VideoController : MonoBehaviour
     private VideoPlayer vp;
     public GameObject loadingpanel;
 
-   
+    public VideoClip clip;
     protected  void Awake()
     {
        
@@ -29,18 +29,22 @@ public class VideoController : MonoBehaviour
     void playvideo()
     {
        
-        if (vp)
-        {
-            string videopath = System.IO.Path.Combine(Application.streamingAssetsPath, videofilename);
-            Debug.Log(videopath);
-            vp.url = videopath;
-            vp.Play();
-            
-        }
-        else
-        {
-            Debug.Log("VPlayer Not Found");
-        }
+        // if (vp)
+        // {
+        //     string videopath = System.IO.Path.Combine(Application.streamingAssetsPath, videofilename);
+        //     Debug.Log(videopath);
+        //     vp.url = videopath;
+        //     vp.Play();
+        //     
+        // }
+        // else
+        // {
+        //     Debug.Log("VPlayer Not Found");
+        // }
+        vp.source = VideoSource.VideoClip;
+        vp.clip = clip;
+
+        vp.Prepare();
     }
  
 }

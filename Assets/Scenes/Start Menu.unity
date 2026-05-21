@@ -1173,10 +1173,10 @@ RectTransform:
   - {fileID: 1118747669}
   m_Father: {fileID: 9070924720040907536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.176625, y: 0.057555564}
-  m_AnchorMax: {x: 0.8245625, y: 0.9257778}
-  m_AnchoredPosition: {x: -1.5, y: 5}
-  m_SizeDelta: {x: -0.096191406, y: 8.285278}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1243.9038, y: 805.2853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &190406854
 MonoBehaviour:
@@ -1416,13 +1416,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 152199104}
+  - {fileID: 1078773269}
   m_Father: {fileID: 742410633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.29860553, y: 0.4611758}
-  m_AnchorMax: {x: 0.75100005, y: 0.94100004}
-  m_AnchoredPosition: {x: -12, y: -16}
-  m_SizeDelta: {x: -1, y: 3}
-  m_Pivot: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -53, y: 172}
+  m_SizeDelta: {x: 868, y: 428}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657749672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,9 +1495,9 @@ RectTransform:
   m_Father: {fileID: 742410633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.44121277, y: 0.61870027}
-  m_AnchoredPosition: {x: -32.595947, y: -94.8291}
-  m_SizeDelta: {x: 37.935547, y: 84.6582}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_SizeDelta: {x: 669, y: 569}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &678679532
 MonoBehaviour:
@@ -1704,7 +1705,6 @@ RectTransform:
   - {fileID: 24016947}
   - {fileID: 657749671}
   - {fileID: 678679531}
-  - {fileID: 1078773269}
   m_Father: {fileID: 9070924720040907536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2089,18 +2089,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078773268}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 742410633}
+  m_Father: {fileID: 657749671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.44746605, y: 0.5914755}
-  m_AnchorMax: {x: 0.59400004, y: 0.65282434}
-  m_AnchoredPosition: {x: -8.700012, y: 6}
-  m_SizeDelta: {x: -4.0791016, y: 2.9470978}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 239, y: 100}
+  m_SizeDelta: {x: 262, y: 77}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1078773270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2242,8 +2242,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -200}
-  m_SizeDelta: {x: 235.9521, y: 69.3447}
+  m_AnchoredPosition: {x: 304, y: -177}
+  m_SizeDelta: {x: 262, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1118747670
 MonoBehaviour:
@@ -2529,7 +2529,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291546355
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3479,6 +3479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videofilename: without audio title final.webm
   loadingpanel: {fileID: 507865324}
+  clip: {fileID: 32900000, guid: c39a8554daa47b546b145dec52fb1b0c, type: 3}
 --- !u!114 &2123708371 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9070924721466395991, guid: 24157cbeb51dcbf4c877f28708c33ea9, type: 3}
@@ -4257,7 +4258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1538632236, guid: 24157cbeb51dcbf4c877f28708c33ea9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.2
+      value: -26.199951
       objectReference: {fileID: 0}
     - target: {fileID: 1538632236, guid: 24157cbeb51dcbf4c877f28708c33ea9, type: 3}
       propertyPath: m_AnchoredPosition.y

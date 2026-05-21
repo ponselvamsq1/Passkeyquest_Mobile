@@ -95,7 +95,9 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Mobile Controls")]
     public bool moveLeft;
     public bool moveRight;
+
     public bool jumpPressed;
+    public bool jumpHold;
 
     //GET Functions
 
@@ -599,57 +601,39 @@ public class PlayerStateManager : MonoBehaviour
        // dirY = Input.GetAxisRaw(GameConstants.VERTICAL_AXIS); if (_hasWinGame && !GameManager.Instance.iscontinue)
       // return;
       
-      dirX = 0;
+      if (_hasWinGame && !GameManager.Instance.iscontinue)
+          return;
 
-      // Keyboard
-      dirX += Input.GetAxisRaw(GameConstants.HORIZONTAL_AXIS);
+      // Keyboard input
+      dirX = Input.GetAxisRaw(GameConstants.HORIZONTAL_AXIS);
+      dirY = Input.GetAxisRaw(GameConstants.VERTICAL_AXIS);
 
-      // Mobile buttons
+      // Mobile movement
       if (moveLeft)
           dirX = -1;
 
       if (moveRight)
           dirX = 1;
 
-      // Jump
+      // START JUMP
       if ((Input.GetKeyDown(KeyCode.Space) || jumpPressed) && _canJump)
       {
           jumpPressed = false;
+
           ChangeState(jumpState);
       }
-      if (_hasWinGame && !GameManager.Instance.iscontinue)
-          return;
 
-#if UNITY_EDITOR || UNITY_STANDALONE
+      // HIGH JUMP HOLD
+      bool isHoldingJump = Input.GetKey(KeyCode.Space) || jumpHold;
 
-      // PC Keyboard Controls
-      dirX = Input.GetAxisRaw(GameConstants.HORIZONTAL_AXIS);
-      dirY = Input.GetAxisRaw(GameConstants.VERTICAL_AXIS);
-
-      if (Input.GetKeyDown(KeyCode.Space) && _canJump)
+      if (isHoldingJump && rb.velocity.y > 0.1f)
       {
-          ChangeState(jumpState);
+          rb.gravityScale = _playerStats.GravScale * 0.4f;
       }
-
-#else
-
-    // Mobile Touch Controls
-    dirX = 0;
-
-    if (moveLeft)
-        dirX = -1;
-
-    if (moveRight)
-        dirX = 1;
-
-    // Jump
-    if (jumpPressed && _canJump)
-    {
-        jumpPressed = false;
-        ChangeState(jumpState);
-    }
-
-#endif
+      else
+      {
+          rb.gravityScale = _playerStats.GravScale;
+      }
        
     }
 
@@ -991,11 +975,21 @@ public class PlayerStateManager : MonoBehaviour
         moveRight = false;
     }
 
-// JUMP BUTTON
-    public void JumpButton()
-    {
-        jumpPressed = true;
-    }
+/// JUMP BUTTON PRESS
+public void JumpButtonDown()
+{
+    jumpPressed = true;
+    jumpHold = true;
+}
 
-   
+// JUMP BUTTON RELEASE
+public void JumpButtonUp()
+{
+    jumpHold = false;
+}
+
+public void OnClick_Soundsetting()
+{
+    UIManager.Instance.Soundsetting();
+}
 }

@@ -230,8 +230,14 @@ public class UIManager : BaseSingleton<UIManager>
 
     public void OnClick_Exit()
     {
-        Application.OpenURL("https://beta.skillhub.sq1.security/course/view.php?id=3");
+        //Application.OpenURL("https://beta.skillhub.sq1.security/course/view.php?id=3");
         //Application.OpenURL("http://192.168.8.59/course/view.php?id=3");
+        Application.Quit();
+    }
+
+    public void Soundsetting()
+    {
+        PopUpSettingsPanel();
     }
 
 }
