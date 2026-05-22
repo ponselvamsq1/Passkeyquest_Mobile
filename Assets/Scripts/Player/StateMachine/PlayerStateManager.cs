@@ -604,34 +604,57 @@ public class PlayerStateManager : MonoBehaviour
       if (_hasWinGame && !GameManager.Instance.iscontinue)
           return;
 
-      // Keyboard input
+      // KEYBOARD INPUT
       dirX = Input.GetAxisRaw(GameConstants.HORIZONTAL_AXIS);
       dirY = Input.GetAxisRaw(GameConstants.VERTICAL_AXIS);
 
-      // Mobile movement
+      // MOBILE MOVEMENT
       if (moveLeft)
           dirX = -1;
 
       if (moveRight)
           dirX = 1;
 
-      // START JUMP
-      if ((Input.GetKeyDown(KeyCode.Space) || jumpPressed) && _canJump)
+      // JUMP INPUT
+      if (Input.GetKeyDown(KeyCode.Space) || jumpPressed)
       {
           jumpPressed = false;
 
-          ChangeState(jumpState);
+          // NORMAL JUMP
+          if (_canJump)
+          {
+              _jumpStart = Time.time;
+              ChangeState(jumpState);
+          }
+          // DOUBLE JUMP (ONLY AFTER SKILL UNLOCK)
+          else if (_canDbJump && _unlockedDbJump)
+          {
+              _canDbJump = false;
+              _jumpStart = Time.time;
+              ChangeState(doubleJumpState);
+          }
       }
 
-      // HIGH JUMP HOLD
+      // HOLD FOR HIGH JUMP
       bool isHoldingJump = Input.GetKey(KeyCode.Space) || jumpHold;
+
+      float maxJumpHoldTime = 0.80f;
 
       if (isHoldingJump && rb.velocity.y > 0.1f)
       {
-          rb.gravityScale = _playerStats.GravScale * 0.4f;
+          // LONG PRESS = HIGHER JUMP
+          if (Time.time - _jumpStart < maxJumpHoldTime)
+          {
+              rb.gravityScale = _playerStats.GravScale * 0.3f;
+          }
+          else
+          {
+              rb.gravityScale = _playerStats.GravScale;
+          }
       }
       else
       {
+          // SINGLE PRESS = NORMAL JUMP
           rb.gravityScale = _playerStats.GravScale;
       }
        
