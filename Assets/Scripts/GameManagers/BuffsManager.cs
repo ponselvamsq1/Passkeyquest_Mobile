@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BuffsManager : BaseSingleton<BuffsManager>
@@ -128,7 +129,9 @@ public class BuffsManager : BaseSingleton<BuffsManager>
 
     public void Buff_Reloadscene()
     {
-        GameManager.Instance.ReloadScene();
+       // GameManager.Instance.ReloadScene();
+        //SceneManager.loadedScene("")
+        GameManager.Instance.Playagian();
         SoundsManager.Instance.PlaySfx(GameEnums.ESoundName.ButtonSelectedSfx, 1.0f);
     }
 

@@ -638,14 +638,14 @@ public class PlayerStateManager : MonoBehaviour
       // HOLD FOR HIGH JUMP
       bool isHoldingJump = Input.GetKey(KeyCode.Space) || jumpHold;
 
-      float maxJumpHoldTime = 0.80f;
+      float maxJumpHoldTime = 0.90f;
 
       if (isHoldingJump && rb.velocity.y > 0.1f)
       {
           // LONG PRESS = HIGHER JUMP
           if (Time.time - _jumpStart < maxJumpHoldTime)
           {
-              rb.gravityScale = _playerStats.GravScale * 0.3f;
+              rb.gravityScale = _playerStats.GravScale * 0.26f;
           }
           else
           {

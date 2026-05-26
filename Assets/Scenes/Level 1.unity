@@ -746,6 +746,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 316876576}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &47191390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2040,8 +2052,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 311, y: 51}
-  m_SizeDelta: {x: 180, y: 180}
+  m_AnchoredPosition: {x: 288, y: 51}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &128744845
 MonoBehaviour:
@@ -2107,7 +2119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 264cfd94c2c99e242ae3b7ad87446eb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6df5f90e389f172429ebbf4b6e72d801, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5041,15 +5053,15 @@ RectTransform:
   m_GameObject: {fileID: 316146055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 365300357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 63, y: 51}
-  m_SizeDelta: {x: 180, y: 180}
+  m_AnchoredPosition: {x: 212, y: 51}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &316146057
 MonoBehaviour:
@@ -5071,7 +5083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23cd9a3522fac284f8fa244bdcdf0d36, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6df5f90e389f172429ebbf4b6e72d801, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -57085,8 +57097,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -41, y: 220}
-  m_SizeDelta: {x: 180, y: 180}
+  m_AnchoredPosition: {x: -43, y: 174}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &486363605
 MonoBehaviour:
@@ -57152,7 +57164,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 264cfd94c2c99e242ae3b7ad87446eb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6df5f90e389f172429ebbf4b6e72d801, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -60422,6 +60434,10 @@ PrefabInstance:
     - target: {fileID: 8783634107215436433, guid: a4b8b7dba3ab39144b63e69c239bb9e7, type: 3}
       propertyPath: m_Name
       value: Spike (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783634107215436433, guid: a4b8b7dba3ab39144b63e69c239bb9e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8783634107215436463, guid: a4b8b7dba3ab39144b63e69c239bb9e7, type: 3}
       propertyPath: m_RootOrder
@@ -65028,6 +65044,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: BuffsManager, Assembly-CSharp
         m_MethodName: BackHome_BuffManager
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 316876576}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -72183,6 +72211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike
       objectReference: {fileID: 0}
+    - target: {fileID: 8783634107215436433, guid: a4b8b7dba3ab39144b63e69c239bb9e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8783634107215436463, guid: a4b8b7dba3ab39144b63e69c239bb9e7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -74524,7 +74556,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -37}
-  m_SizeDelta: {x: 1522.0825, y: 1158.8016}
+  m_SizeDelta: {x: 1633.738, y: 1158.8016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1570670543
 MonoBehaviour:
@@ -82632,7 +82664,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -37}
-  m_SizeDelta: {x: 1522.0825, y: 1158.8016}
+  m_SizeDelta: {x: 1633.738, y: 1158.8016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569773766028236521
 MonoBehaviour:

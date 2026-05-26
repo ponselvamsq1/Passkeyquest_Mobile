@@ -181,6 +181,28 @@ public class GameManager : BaseSingleton<GameManager>
         //Chơi lại scene này (start tại vị trí flag gần nhất)
     }
 
+    public void Playagian()
+    {
+        Time.timeScale = 1.0f;
+
+        checktipcount = 0;
+        Keycount = 0;
+
+        ischeck = false;
+        iscontinue = false;
+
+        PlayerPrefs.DeleteAll();
+
+        SoundsManager.Instance.PlaySfx(GameEnums.ESoundName.ButtonSelectedSfx, 1.0f);
+
+        UIManager.Instance.PopDownAllPanels();
+
+        _isReplay = true;
+
+        // Reload same scene fresh
+        SwitchToScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void BackHome()
     {
         SoundsManager.Instance.PlaySfx(GameEnums.ESoundName.ButtonSelectedSfx, 1.0f);
