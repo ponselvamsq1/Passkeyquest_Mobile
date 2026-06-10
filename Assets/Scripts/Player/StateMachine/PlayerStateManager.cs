@@ -150,6 +150,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public bool IsApplyGotHitEffect { set { _isApplyGotHitEffect = value; } }
     
+    public TextMeshProUGUI keyCountText;
+    
     private void Awake()
     {
         GetReferenceComponents();
@@ -201,6 +203,7 @@ public class PlayerStateManager : MonoBehaviour
         SetupProperties();
         UpdatePosition();
         HandlePlayerSkills();
+        UpdateKeyCountUI(GameManager.Instance.Keycount);
     }
 
     private void RegisterFunction()
@@ -335,7 +338,11 @@ public class PlayerStateManager : MonoBehaviour
     void Increasekeyvalue()
     {
         GameManager.Instance.Keycount += 1;
+
+        UpdateKeyCountUI(GameManager.Instance.Keycount);
+
         Debug.Log(GameManager.Instance.Keycount);
+
         UIManager.Instance.Decreasecanvasorder();
         uiTipsPanel.SetActive(true);
         switch (GameManager.Instance.Keycount)
@@ -610,10 +617,10 @@ public class PlayerStateManager : MonoBehaviour
 
       // MOBILE MOVEMENT
       if (moveLeft)
-          dirX = -1;
+          dirX = -0.7f;
 
       if (moveRight)
-          dirX = 1;
+          dirX = 0.7f;
 
       // JUMP INPUT
       if (Input.GetKeyDown(KeyCode.Space) || jumpPressed)
@@ -1015,4 +1022,10 @@ public void OnClick_Soundsetting()
 {
     UIManager.Instance.Soundsetting();
 }
+
+public void UpdateKeyCountUI(int currentKeys)
+{
+    keyCountText.text = "Keys : " + currentKeys + "/" + 5;
+}
+
 }

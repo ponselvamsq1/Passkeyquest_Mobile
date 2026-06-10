@@ -38,6 +38,7 @@ public class UIManager : BaseSingleton<UIManager>
 
     bool _canPopUpPanel = true;
     bool _canPlayCloseSfx; //Chỉ có thể play close sfx khi chủ động bấm X
+    
 
     public GameObject StartMenuCanvas { get => _startMenuCanvas; set => _startMenuCanvas = value; }
 
@@ -62,6 +63,7 @@ public class UIManager : BaseSingleton<UIManager>
     private void Start()
     {
         PopDownAllPanels();
+       
     }
 
     private void Update()
@@ -239,5 +241,5 @@ public class UIManager : BaseSingleton<UIManager>
     {
         PopUpSettingsPanel();
     }
-
+  
 }
