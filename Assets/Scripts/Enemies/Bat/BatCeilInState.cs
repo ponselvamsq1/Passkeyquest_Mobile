@@ -10,7 +10,7 @@ public class BatCeilInState : MEnemiesBaseState
         _mEnemiesManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.EBatState.ceilIn);
         _batManager = (BatManager)charactersManager;
         //Cố định velo = 0 vì có thể còn thừa velo trước đó dẫn đến lúc ceil in vẫn move nhích từng tí
-        _batManager.GetRigidbody2D().velocity = Vector2.zero;
+        _batManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         //Debug.Log("CI");
     }
 

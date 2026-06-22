@@ -341,8 +341,6 @@ public class PlayerStateManager : MonoBehaviour
 
         UpdateKeyCountUI(GameManager.Instance.Keycount);
 
-        Debug.Log(GameManager.Instance.Keycount);
-
         UIManager.Instance.Decreasecanvasorder();
         uiTipsPanel.SetActive(true);
         switch (GameManager.Instance.Keycount)
@@ -449,11 +447,7 @@ public class PlayerStateManager : MonoBehaviour
     private void BeingDamaged(object obj)
     {
         _isHitFromRightSide = (bool)obj;
-        //Debug.Log("bi hit tu right: " + (bool)obj);
         ChangeState(gotHitState);
-        //Đky event = func này, không phải gây tight-coupling ở class enemies
-        //Enemies đ' cần quan tâm về rb của player, nó chỉ việc phát thông báo (Invoke)
-        //Thằng nào có liên quan đến thì đăng ký và xử lý
     }
 
     private void JumpPassive(object obj)
@@ -468,7 +462,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         _isInteractingWithNPC = true;
         _interactPosition = (Vector2)obj;
-        Debug.Log("inter: " + _interactPosition);
+       
     }
 
     private void StopInteractWithNPC(object obj)
@@ -481,14 +475,13 @@ public class PlayerStateManager : MonoBehaviour
         if (_hasBeenDisabled)
             return;
 
-        //Chết là hết
         if (PlayerHealthManager.Instance.CurrentHP == 0)
         {
             HandleDeadState();
             return;
         }
 
-        //=========Handle things related to NPC==========//
+        
         NPCCheck();
         DrawRayDetectNPC();
 
@@ -502,7 +495,6 @@ public class PlayerStateManager : MonoBehaviour
             _hasChange = false;
             _hasFlip = false;
         }
-        //=========Handle things related to NPC==========//
 
         LockIfOutMinBound();
         UpdateLayer();
@@ -514,17 +506,10 @@ public class PlayerStateManager : MonoBehaviour
         HandleAlphaValueGotHit();
         HandleDustVelocity();
         SpawnDust();
-        //Debug.Log("OG, CanJ: " + isOnGround + ", " + _canJump);
+       
     }
 
-    /// <summary>
-    ///Hàm dưới để thực hiện cơ chế Invunerable của HK:
-    ///Switch layer cho player trong khoảng thgian miễn dmg
-    ///Cho phép enemies đâm xuyên qua player và ngược lại
-    ///Đỡ việc 2 box va nhau, có thể gây khó chịu cho Player.
-    ///Phải có 1 biến bool để chặn cửa cùng Time, 0 thì đầu game ĐK thoả mãn luôn ^.^
-    /// </summary>
-
+   
     private void UpdateLayer()
     {
         if (Time.time - gotHitState.EntryTime <= _playerStats.InvulnerableTime && _isVunerable)
@@ -538,8 +523,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void HandleInteractWithNPC()
     {
-        //Tương tác với NPC thì chỉ xử lý 2 state là Idle và Run
-        //Đơn giản là lật sprite (nếu có) về hướng InteractPosition
+       
         HandleFlipTowardsInteractPos();
         AllowMoveTowardsInteractPos();
         _state.Update();
@@ -551,19 +535,19 @@ public class PlayerStateManager : MonoBehaviour
         {
             _hasFlip = true;
 
-            //Nếu ở rất gần vị trí trò chuyện thì return 0 cần flip tránh bug
+            
             if (Mathf.Abs(transform.position.x - _interactPosition.x) < GameConstants.NEAR_CONVERSATION_RANGE)
                 return;
 
             if (isFacingRight && transform.position.x > InteractPosition.x + GameConstants.CAN_START_CONVERSATION_RANGE)
             {
                 FlippingSprite();
-                //Debug.Log("Flip to Left");
+               
             }
             else if (!isFacingRight && transform.position.x < InteractPosition.x - GameConstants.CAN_START_CONVERSATION_RANGE)
             {
                 FlippingSprite();
-                //Debug.Log("Flip to Right");
+                
             }
         }
     }
@@ -573,12 +557,12 @@ public class PlayerStateManager : MonoBehaviour
         if (!_hasChange)
         {
             _hasChange = true;
-            //Nếu ở rất gần vị trí trò chuyện thì switch sang Idle luôn tránh bug chạy lung tung ở Run
+           
             if (Mathf.Abs(transform.position.x - _interactPosition.x) < GameConstants.NEAR_CONVERSATION_RANGE)
                 ChangeState(idleState);
             else
             {
-                Debug.Log("run");
+               
                 Invoke(nameof(ChangeToRun), GameConstants.DELAYPLAYERRUNSTATE);
             }
         }
@@ -591,10 +575,10 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //Draw Ground Check
+        
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
 
-        //Draw Wall Check
+        
         if (isFacingRight)
             Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
         else
@@ -603,26 +587,22 @@ public class PlayerStateManager : MonoBehaviour
 
     private void HandleInput()
     {
-       // if (_hasWinGame && !GameManager.Instance.iscontinue) return;
-       // dirX = Input.GetAxisRaw(GameConstants.HORIZONTAL_AXIS);
-       // dirY = Input.GetAxisRaw(GameConstants.VERTICAL_AXIS); if (_hasWinGame && !GameManager.Instance.iscontinue)
-      // return;
       
       if (_hasWinGame && !GameManager.Instance.iscontinue)
           return;
 
-      // KEYBOARD INPUT
+      
       dirX = Input.GetAxisRaw(GameConstants.HORIZONTAL_AXIS);
       dirY = Input.GetAxisRaw(GameConstants.VERTICAL_AXIS);
 
-      // MOBILE MOVEMENT
+      
       if (moveLeft)
           dirX = -0.7f;
 
       if (moveRight)
           dirX = 0.7f;
 
-      // JUMP INPUT
+      
       if (Input.GetKeyDown(KeyCode.Space) || jumpPressed)
       {
           jumpPressed = false;
@@ -647,7 +627,7 @@ public class PlayerStateManager : MonoBehaviour
 
       float maxJumpHoldTime = 0.90f;
 
-      if (isHoldingJump && rb.velocity.y > 0.1f)
+      if (isHoldingJump && rb.linearVelocity.y > 0.1f)
       {
           // LONG PRESS = HIGHER JUMP
           if (Time.time - _jumpStart < maxJumpHoldTime)
@@ -661,7 +641,6 @@ public class PlayerStateManager : MonoBehaviour
       }
       else
       {
-          // SINGLE PRESS = NORMAL JUMP
           rb.gravityScale = _playerStats.GravScale;
       }
        
@@ -669,20 +648,14 @@ public class PlayerStateManager : MonoBehaviour
 
     public void FlippingSprite()
     {
-        //ĐK check if:
-        //Vì khi WallJump sau khi WS,
-        //ta muốn sprite giữ nguyên ở hướng WS 1 khoảng DisableTime
-        //Nên chỉ cho lật sprite ở 2 states đó khi hết DisableTime(IsEndDisable)
-        //Tránh việc Player khi vừa WS và bấm S (WJ) nhưng Input directionX
-        //hướng về cái Wall vừa đu dẫn đến Player quay mặt luôn vào cái Wall
-
+       
         if(_state is WallJumpState)
         {
             if(wallJumpState.IsEndDisable)
             {
                 isFacingRight = !isFacingRight;
                 transform.Rotate(0, 180, 0);
-                //Debug.Log("hereWJ");
+               
             }
         }
         else
@@ -690,7 +663,7 @@ public class PlayerStateManager : MonoBehaviour
             isFacingRight = !isFacingRight;
             transform.Rotate(0, 180, 0);
         }
-        //Hàm này dùng để lật sprite theo chiều ngang
+       
     }
 
     public void FlipSpriteAfterWallSlide()
@@ -698,19 +671,14 @@ public class PlayerStateManager : MonoBehaviour
         isFacingRight = !isFacingRight;
         transform.Rotate(0, 180, 0);
         prevStateIsWallSlide = false;
-        //Debug.Log("Here");
-        //Hàm này để xử lý việc lật sprite sau khi WS
+       
     }
 
     private void HandleFlipSprite()
     {
-        //Sao 0 nghĩ đơn giản hơn là đ' cho flip khi dash 
+       
         if (_state is DashState) 
             return;
-        //Tại sao thêm ĐK !IsWallTouch
-        //Vì sprites Wall Slide bị ngược + lười chỉnh :v
-        //Và vì sau khi WallSlide xong thì sprite phải được
-        //lật ngược cho phù hợp 
         if(!IsWallTouch)
         {
             if (dirX > 0f && !isFacingRight)
@@ -726,7 +694,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void GroundAndWallCheck()
     {
-        //Ở trên Platform thì 0 cần GCheck tránh bug
+        
         if (!_isOnPlatform)
             _canJump = isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, wallLayer);
         else
@@ -776,22 +744,19 @@ public class PlayerStateManager : MonoBehaviour
 
     private void ChangeToRun()
     {
-        //Dùng để Invoke Delay sang RunState khi tương tác với NPC
-        //Tránh TH như mushroom, flip quá nhanh dẫn đến thoả mãn đk quá nhanh
+       
         ChangeState(runState);
     }
 
     private void AllowUpdateDash()
     {
         dashState.AllowUpdate = true;
-        //bug here, do dính gothit ngoài manager
-        //Vứt trong Dash Animation để Delay việc Update của Dash 
+       
     }
 
     public void HandleDeadState()
     {
-        //Tránh func này bị gọi nhiều lần dù đã chết
-        //VD: Dính dmg từ quái khi bay màu dẫn đến loadscene loạn xạ
+        
         if (!_hasDead)
             _hasDead = true;
         else
@@ -871,20 +836,16 @@ public class PlayerStateManager : MonoBehaviour
     public void Enable()
     {
         _hasBeenDisabled = false;
-        Debug.Log("Enable");
+        
     }
-
-    /// <summary>
-    ///2 hàm dưới để xử lý màu alpha khi player dính đòn  
-    /// </summary>
+    
 
     private IEnumerator Twinkling()
     {
-        //Lock - Đảm bảo chỉ gọi coroutine sau khi đi đc 1 vòng Alpha Value:
-        //từ 1 -> AlphaVal -> 1
+        
         _hasStartCoroutine = true;
         _spriteRenderer.color = new Color(1f, 1f, 1f, _playerStats.AlphaValueGotHit);
-        //Debug.Log("tang lan: " + _count);
+       
 
         yield return new WaitForSeconds(_playerStats.TimeEachApplyAlpha);
 
@@ -911,8 +872,7 @@ public class PlayerStateManager : MonoBehaviour
             StartCoroutine(Twinkling());
         else if (Time.time - gotHitState.EntryTime > _playerStats.InvulnerableTime)
         {
-            //Hết thgian miễn dmg r thì trả màu về như cũ cho nó
-            //NẾU trên ng 0 có buff vô hình, còn có thì return và set lại bool
+           
             if (BuffsManager.Instance.GetTypeOfBuff(EBuffs.Invisible).IsAllowToUpdate)
             {
                 _isApplyGotHitEffect = false;
@@ -928,8 +888,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         GameObject dEff = Pool.Instance.GetObjectInPool(EPoolable.Dashable);
         dEff.SetActive(true);
-        //Event của Dash animation
-        //Dùng để ra dấu hiệu chỉ đc dash khi hết effect
+       
     }
 
     private void LockIfOutMinBound()
@@ -982,8 +941,6 @@ public class PlayerStateManager : MonoBehaviour
     }
     
     
-    /// mobile build
-    // LEFT BUTTON
     public void LeftButtonDown()
     {
         moveLeft = true;

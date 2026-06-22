@@ -24,9 +24,7 @@ public class TypeEffectTextInit : MonoBehaviour
             
             if (i == fullText.Length - 1)
             {
-                Debug.Log("Reached the last character: " + fullText[i]);  
                 continebutton.SetActive(true);
-                
                 PlayerPrefs.SetInt("ins", 1);
                 
             }
@@ -34,10 +32,10 @@ public class TypeEffectTextInit : MonoBehaviour
     }
     public void Reset_typewritring()
     {
-        // Stop any ongoing typing coroutine
+        
         textMeshPro.text = ""; // Clear text
         continebutton.SetActive(false); // Hide the button
-        // StartCoroutine(TypeText()); // Restart typing effect
+       
     }
     public void RestartTypewriting()
     {

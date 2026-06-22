@@ -22,7 +22,7 @@ public class BunnyAttackJumpState : MEnemiesAttackState
 
     private bool CheckIfCanFall()
     {
-        return _bunnyManager.GetRigidbody2D().velocity.y < 0.1f;
+        return _bunnyManager.GetRigidbody2D().linearVelocity.y < 0.1f;
     }
 
     public override void FixedUpdate() { }

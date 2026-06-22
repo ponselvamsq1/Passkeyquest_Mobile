@@ -37,7 +37,7 @@ public class MEnemiesGotHitState : MEnemiesBaseState
     {
         _mEnemiesManager.GetSpriteRenderer.sortingLayerName = GameConstants.RENDER_MAP_LAYER;
         _mEnemiesManager.GetSpriteRenderer.sortingOrder = GameConstants.RENDER_MAP_ORDER;
-        _mEnemiesManager.GetRigidbody2D().velocity = Vector2.zero; //Cố định vị trí
+        _mEnemiesManager.GetRigidbody2D().linearVelocity = Vector2.zero; //Cố định vị trí
         _mEnemiesManager.GetRigidbody2D().AddForce(_mEnemiesManager.EnemiesSO.KnockForce, ForceMode2D.Impulse);
         _mEnemiesManager.GetCollider2D.enabled = false;
         if (!_mEnemiesManager.NotPlayDeadSfx)

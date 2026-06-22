@@ -8,8 +8,8 @@ public class BeeAttackState : MEnemiesAttackState
     {
         base.EnterState(charactersManager);
         _beeManager = (BeeManager)charactersManager;
-        _beeManager.GetRigidbody2D().velocity = Vector2.zero; //Cố định vị trí
-        //Debug.Log("Bee Attack");
+        _beeManager.GetRigidbody2D().linearVelocity = Vector2.zero; //Cố định vị trí
+        
     }
 
     public override void ExitState()

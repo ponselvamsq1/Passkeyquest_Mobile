@@ -38,12 +38,12 @@ public class SnailPatrolState : MEnemiesPatrolState
             {
                 if (_snailManager.Direction == 1)
                 {
-                    _snailManager.GetRigidbody2D().velocity = new Vector2(-_snailManager.MEnemiesSO.PatrolSpeed.x, -_snailManager.MEnemiesSO.PatrolSpeed.y);
+                    _snailManager.GetRigidbody2D().linearVelocity = new Vector2(-_snailManager.MEnemiesSO.PatrolSpeed.x, -_snailManager.MEnemiesSO.PatrolSpeed.y);
                     //Debug.Log("trai xuong");
                 }
                 else
                 {
-                    _snailManager.GetRigidbody2D().velocity = new Vector2(_snailManager.MEnemiesSO.PatrolSpeed.x, _snailManager.MEnemiesSO.PatrolSpeed.y);
+                    _snailManager.GetRigidbody2D().linearVelocity = new Vector2(_snailManager.MEnemiesSO.PatrolSpeed.x, _snailManager.MEnemiesSO.PatrolSpeed.y);
                     //Debug.Log("phai len");
                 }
             }
@@ -52,11 +52,11 @@ public class SnailPatrolState : MEnemiesPatrolState
                 switch (_snailManager.Direction)
                 {
                     case 1:
-                        _snailManager.GetRigidbody2D().velocity = new Vector2(-_snailManager.MEnemiesSO.PatrolSpeed.x, 0f);
+                        _snailManager.GetRigidbody2D().linearVelocity = new Vector2(-_snailManager.MEnemiesSO.PatrolSpeed.x, 0f);
                         //Debug.Log("ngang1");
                         break;
                     case 3:
-                        _snailManager.GetRigidbody2D().velocity = new Vector2(_snailManager.MEnemiesSO.PatrolSpeed.x, 0f);
+                        _snailManager.GetRigidbody2D().linearVelocity = new Vector2(_snailManager.MEnemiesSO.PatrolSpeed.x, 0f);
                         //Debug.Log("ngang3");
                         break;
                 }
@@ -69,12 +69,12 @@ public class SnailPatrolState : MEnemiesPatrolState
             {
                 if (_snailManager.Direction == 2)
                 {
-                    _snailManager.GetRigidbody2D().velocity = new Vector2(_snailManager.MEnemiesSO.PatrolSpeed.x, -_snailManager.MEnemiesSO.PatrolSpeed.y);
+                    _snailManager.GetRigidbody2D().linearVelocity = new Vector2(_snailManager.MEnemiesSO.PatrolSpeed.x, -_snailManager.MEnemiesSO.PatrolSpeed.y);
                     //Debug.Log("trai len2");
                 }
                 else
                 {
-                    _snailManager.GetRigidbody2D().velocity = new Vector2(-_snailManager.MEnemiesSO.PatrolSpeed.x, _snailManager.MEnemiesSO.PatrolSpeed.y);
+                    _snailManager.GetRigidbody2D().linearVelocity = new Vector2(-_snailManager.MEnemiesSO.PatrolSpeed.x, _snailManager.MEnemiesSO.PatrolSpeed.y);
                     //Debug.Log("phai len");
                 }
             }
@@ -83,11 +83,11 @@ public class SnailPatrolState : MEnemiesPatrolState
                 switch (_snailManager.Direction)
                 {
                     case 2:
-                        _snailManager.GetRigidbody2D().velocity = new Vector2(0f, -_snailManager.MEnemiesSO.PatrolSpeed.x);
+                        _snailManager.GetRigidbody2D().linearVelocity = new Vector2(0f, -_snailManager.MEnemiesSO.PatrolSpeed.x);
                         //Debug.Log("doc2");
                         break;
                     case 4:
-                        _snailManager.GetRigidbody2D().velocity = new Vector2(0f, _snailManager.MEnemiesSO.PatrolSpeed.x);
+                        _snailManager.GetRigidbody2D().linearVelocity = new Vector2(0f, _snailManager.MEnemiesSO.PatrolSpeed.x);
                         //Debug.Log("doc4");
                         break;
                 }

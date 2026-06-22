@@ -54,8 +54,8 @@ public class BeePatrolState : MEnemiesPatrolState
     protected override void Move()
     {
         if (_beeManager.GetIsFacingRight())
-            _beeManager.GetRigidbody2D().velocity = new Vector2(_beeManager.MEnemiesSO.PatrolSpeed.x, _beeManager.MEnemiesSO.PatrolSpeed.y * _yOffset);
+            _beeManager.GetRigidbody2D().linearVelocity = new Vector2(_beeManager.MEnemiesSO.PatrolSpeed.x, _beeManager.MEnemiesSO.PatrolSpeed.y * _yOffset);
         else
-            _beeManager.GetRigidbody2D().velocity = new Vector2(-_beeManager.MEnemiesSO.PatrolSpeed.x, _beeManager.MEnemiesSO.PatrolSpeed.y * _yOffset);
+            _beeManager.GetRigidbody2D().linearVelocity = new Vector2(-_beeManager.MEnemiesSO.PatrolSpeed.x, _beeManager.MEnemiesSO.PatrolSpeed.y * _yOffset);
     }
 }

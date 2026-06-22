@@ -87,9 +87,9 @@ public class MEnemiesPatrolState : MEnemiesBaseState
     protected virtual void Move()
     {
         if (_mEnemiesManager.GetIsFacingRight())
-            _mEnemiesManager.GetRigidbody2D().velocity = new Vector2(_mEnemiesManager.MEnemiesSO.PatrolSpeed.x, _mEnemiesManager.GetRigidbody2D().velocity.y);
+            _mEnemiesManager.GetRigidbody2D().linearVelocity = new Vector2(_mEnemiesManager.MEnemiesSO.PatrolSpeed.x, _mEnemiesManager.GetRigidbody2D().linearVelocity.y);
         else
-            _mEnemiesManager.GetRigidbody2D().velocity = new Vector2(-_mEnemiesManager.MEnemiesSO.PatrolSpeed.x, _mEnemiesManager.GetRigidbody2D().velocity.y);
+            _mEnemiesManager.GetRigidbody2D().linearVelocity = new Vector2(-_mEnemiesManager.MEnemiesSO.PatrolSpeed.x, _mEnemiesManager.GetRigidbody2D().linearVelocity.y);
     }
 
     protected virtual void HandleRandomChangeDirection()

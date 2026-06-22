@@ -78,17 +78,17 @@ public class RunState : PlayerBaseState
             if (_playerStateManager.GetDirX() != 0)
             {
                 if (!BuffsManager.Instance.GetTypeOfBuff(GameEnums.EBuffs.Speed).IsAllowToUpdate)
-                    _playerStateManager.GetRigidBody2D().velocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * _playerStateManager.GetDirX(), _playerStateManager.GetRigidBody2D().velocity.y);
+                    _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * _playerStateManager.GetDirX(), _playerStateManager.GetRigidBody2D().linearVelocity.y);
                 else
-                    _playerStateManager.GetRigidBody2D().velocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * _playerStateManager.GetDirX() * ((PlayerSpeedBuff)BuffsManager.Instance.GetTypeOfBuff(GameEnums.EBuffs.Speed)).SpeedMultiplier, _playerStateManager.GetRigidBody2D().velocity.y);
+                    _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * _playerStateManager.GetDirX() * ((PlayerSpeedBuff)BuffsManager.Instance.GetTypeOfBuff(GameEnums.EBuffs.Speed)).SpeedMultiplier, _playerStateManager.GetRigidBody2D().linearVelocity.y);
             }
         }
         else
         {
             if (_playerStateManager.GetIsFacingRight())
-                _playerStateManager.GetRigidBody2D().velocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX, _playerStateManager.GetRigidBody2D().velocity.y);
+                _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX, _playerStateManager.GetRigidBody2D().linearVelocity.y);
             else
-                _playerStateManager.GetRigidBody2D().velocity = new Vector2(-_playerStateManager.GetPlayerStats.SpeedX, _playerStateManager.GetRigidBody2D().velocity.y);
+                _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(-_playerStateManager.GetPlayerStats.SpeedX, _playerStateManager.GetRigidBody2D().linearVelocity.y);
             //Debug.Log("here");
         }
     }

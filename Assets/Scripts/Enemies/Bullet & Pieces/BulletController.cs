@@ -78,12 +78,12 @@ public class BulletController : MonoBehaviour
         if (_isHorizontal)
         {
             if (_isDirectionRight)
-                _rb.velocity = new Vector2(_bulletStats.BulletSpeed, 0f);
+                _rb.linearVelocity = new Vector2(_bulletStats.BulletSpeed, 0f);
             else
-                _rb.velocity = new Vector2(-_bulletStats.BulletSpeed, 0f);
+                _rb.linearVelocity = new Vector2(-_bulletStats.BulletSpeed, 0f);
         }
         else
-            _rb.velocity = new Vector2(0, -_bulletStats.BulletSpeed);
+            _rb.linearVelocity = new Vector2(0, -_bulletStats.BulletSpeed);
     }
 
     private void OnDisable()

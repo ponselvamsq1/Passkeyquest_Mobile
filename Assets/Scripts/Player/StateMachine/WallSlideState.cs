@@ -43,8 +43,8 @@ public class WallSlideState : PlayerBaseState
 
     private bool CheckIfCanIdle()
     {
-        return Mathf.Abs(_playerStateManager.GetRigidBody2D().velocity.x) < GameConstants.NEAR_ZERO_THRESHOLD
-            && Mathf.Abs(_playerStateManager.GetRigidBody2D().velocity.y) < GameConstants.NEAR_ZERO_THRESHOLD
+        return Mathf.Abs(_playerStateManager.GetRigidBody2D().linearVelocity.x) < GameConstants.NEAR_ZERO_THRESHOLD
+            && Mathf.Abs(_playerStateManager.GetRigidBody2D().linearVelocity.y) < GameConstants.NEAR_ZERO_THRESHOLD
             && _playerStateManager.GetIsOnGround();
     }
 
@@ -61,7 +61,7 @@ public class WallSlideState : PlayerBaseState
         return _playerStateManager.WallHit.normal.x * _playerStateManager.GetDirX() > 0
             && !Input.GetButtonDown(GameConstants.JUMP_BUTTON) && !_playerStateManager.GetIsOnGround()
             || !_playerStateManager.GetIsOnGround() && !_playerStateManager.GetIsWallTouch()
-            && _playerStateManager.GetRigidBody2D().velocity.y < -GameConstants.NEAR_ZERO_THRESHOLD;
+            && _playerStateManager.GetRigidBody2D().linearVelocity.y < -GameConstants.NEAR_ZERO_THRESHOLD;
     }
 
     private bool CheckIfCanDash()
@@ -74,6 +74,6 @@ public class WallSlideState : PlayerBaseState
     public override void FixedUpdate()
     {
         //0 đổi v trục x khi WS, tránh bị nhích ra khỏi wall
-        _playerStateManager.GetRigidBody2D().velocity = new Vector2(0f, -_playerStateManager.GetPlayerStats.WallSlideSpeed);
+        _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(0f, -_playerStateManager.GetPlayerStats.WallSlideSpeed);
     }
 }

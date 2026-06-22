@@ -49,8 +49,8 @@ public class TrunkWithdrawnState : MEnemiesBaseState
     private void HandleWithdrawn()
     {
         if (_trunkManager.GetIsFacingRight())
-            _trunkManager.GetRigidbody2D().velocity = _trunkManager.WithdrawnForce * new Vector2(-1f, 1f);
+            _trunkManager.GetRigidbody2D().linearVelocity = _trunkManager.WithdrawnForce * new Vector2(-1f, 1f);
         else
-            _trunkManager.GetRigidbody2D().velocity = _trunkManager.WithdrawnForce;
+            _trunkManager.GetRigidbody2D().linearVelocity = _trunkManager.WithdrawnForce;
     }
 }

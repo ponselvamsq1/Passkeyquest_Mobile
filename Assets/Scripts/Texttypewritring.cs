@@ -22,7 +22,7 @@ public class Texttypewritring : MonoBehaviour
             
             if (i == fullText.Length - 1)
             {
-                Debug.Log("Reached the last character: " + fullText[i]);  
+               
                 continebutton.SetActive(true);
                 
                 

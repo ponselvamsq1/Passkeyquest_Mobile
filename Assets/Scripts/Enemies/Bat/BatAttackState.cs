@@ -10,7 +10,7 @@ public class BatAttackState : MEnemiesAttackState
         base.EnterState(charactersManager);
         _batManager = (BatManager)charactersManager;
         _batManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.EBatState.attack);
-        _batManager.GetRigidbody2D().velocity = Vector2.zero;
+        _batManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         //Debug.Log("Attack");
     }
 

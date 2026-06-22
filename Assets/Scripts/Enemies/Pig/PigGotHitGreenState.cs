@@ -11,7 +11,7 @@ public class PigGotHitGreenState : MEnemiesGotHitState
     {
         _pigManager = (PigManager)charactersManager;
         _pigManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.EPigState.gotHitGreen);
-        _pigManager.GetRigidbody2D().velocity = Vector2.zero;
+        _pigManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         //Debug.Log("GH Green");
     }
 

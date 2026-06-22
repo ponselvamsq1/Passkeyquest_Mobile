@@ -6,7 +6,7 @@ public class IdleState : PlayerBaseState
     {
         base.EnterState(playerStateManager);
         _playerStateManager.GetAnimator().SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.EPlayerState.idle);
-        _playerStateManager.GetRigidBody2D().velocity = Vector2.zero; //Cố định vị trí
+        _playerStateManager.GetRigidBody2D().linearVelocity = Vector2.zero; //Cố định vị trí
         HandleIfInteractWithNPC();
         HandleIfPrevStateWallSlide();
 

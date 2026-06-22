@@ -12,7 +12,7 @@ public class BossWeakState : MEnemiesBaseState
     {
         _bossManager = (BossStateManager)charactersManager;
         _bossManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.EBossState.idleNoShield);
-        _bossManager.GetRigidbody2D().velocity = Vector2.zero;
+        _bossManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         if (_isFirstEnterState && !_bossManager.IsLastBreath)
         {
             _isFirstEnterState = false;
@@ -44,8 +44,8 @@ public class BossWeakState : MEnemiesBaseState
     {
         if (_bossManager.IsLastBreath) return;
         if (_bossManager.GetIsFacingRight())
-            _bossManager.GetRigidbody2D().velocity = new Vector2(_bossManager.RetreatSpeed, 0f);
+            _bossManager.GetRigidbody2D().linearVelocity = new Vector2(_bossManager.RetreatSpeed, 0f);
         else
-            _bossManager.GetRigidbody2D().velocity = new Vector2(-_bossManager.RetreatSpeed, 0f);
+            _bossManager.GetRigidbody2D().linearVelocity = new Vector2(-_bossManager.RetreatSpeed, 0f);
     }
 }

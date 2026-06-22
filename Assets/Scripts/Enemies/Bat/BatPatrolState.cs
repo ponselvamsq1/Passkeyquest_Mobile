@@ -56,25 +56,25 @@ public class BatPatrolState : MEnemiesPatrolState
             case 0:
                 if (_batManager.GetIsFacingRight())
                     _batManager.FlipLeft();
-                _batManager.GetRigidbody2D().velocity = new Vector2(-1f, 1f) * _batManager.MEnemiesSO.PatrolSpeed;
+                _batManager.GetRigidbody2D().linearVelocity = new Vector2(-1f, 1f) * _batManager.MEnemiesSO.PatrolSpeed;
                 //_batManager.transform.position += new Vector3(-1 * _batManager.MEnemiesSO.PatrolSpeed.x, _batManager.MEnemiesSO.PatrolSpeed.y, 0f) * Time.deltaTime;
                 break;
             case 1:
                 if (!_batManager.GetIsFacingRight())
                     _batManager.FlipRight();
-                _batManager.GetRigidbody2D().velocity = _batManager.MEnemiesSO.PatrolSpeed;
+                _batManager.GetRigidbody2D().linearVelocity = _batManager.MEnemiesSO.PatrolSpeed;
                 //_batManager.transform.position += new Vector3(_batManager.MEnemiesSO.PatrolSpeed.x, _batManager.MEnemiesSO.PatrolSpeed.y, 0f) * Time.deltaTime;
                 break;
             case 2:
                 if (_batManager.GetIsFacingRight())
                     _batManager.FlipLeft();
-                _batManager.GetRigidbody2D().velocity = new Vector2(-1f, -1f) * _batManager.MEnemiesSO.PatrolSpeed;
+                _batManager.GetRigidbody2D().linearVelocity = new Vector2(-1f, -1f) * _batManager.MEnemiesSO.PatrolSpeed;
                 //_batManager.transform.position += new Vector3(-1 * _batManager.MEnemiesSO.PatrolSpeed.x, -1 * _batManager.MEnemiesSO.PatrolSpeed.y, 0f) * Time.deltaTime;
                 break;
             case 3:
                 if (!_batManager.GetIsFacingRight())
                     _batManager.FlipRight();
-                _batManager.GetRigidbody2D().velocity = new Vector2(1f, -1f) * _batManager.MEnemiesSO.PatrolSpeed;
+                _batManager.GetRigidbody2D().linearVelocity = new Vector2(1f, -1f) * _batManager.MEnemiesSO.PatrolSpeed;
                 //_batManager.transform.position += new Vector3(_batManager.MEnemiesSO.PatrolSpeed.x, -1 * _batManager.MEnemiesSO.PatrolSpeed.y, 0f) * Time.deltaTime;
                 break;
         }

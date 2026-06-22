@@ -8,7 +8,7 @@ public class GeckoAttackState : MEnemiesAttackState
     {
         base.EnterState(charactersManager);
         _geckoManager = (GeckoManager)charactersManager;
-        _geckoManager.GetRigidbody2D().velocity = Vector2.zero;
+        _geckoManager.GetRigidbody2D().linearVelocity = Vector2.zero;
     }
 
     public override void ExitState() { }

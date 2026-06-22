@@ -14,7 +14,7 @@ public class PigGotHitRedState : MEnemiesGotHitState
         _mEnemiesManager = (MEnemiesManager)charactersManager;
         _pigManager = (PigManager)charactersManager;
         _pigManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.EPigState.gotHitRed);
-        _pigManager.GetRigidbody2D().velocity = Vector2.zero;
+        _pigManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         if (_pigManager.HP == 0)
         {
             HandleBeforeDestroy();

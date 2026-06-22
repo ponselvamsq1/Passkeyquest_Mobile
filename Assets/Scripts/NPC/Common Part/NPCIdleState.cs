@@ -6,7 +6,7 @@ public class NPCIdleState : CharacterBaseState
     {
         base.EnterState(charactersManager);
         _charactersManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.ENPCState.idle);
-        _charactersManager.GetRigidbody2D().velocity = Vector2.zero;
+        _charactersManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         //Debug.Log("NPC Idle");
     }
 

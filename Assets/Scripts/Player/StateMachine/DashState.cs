@@ -51,7 +51,7 @@ public class DashState : PlayerBaseState
             else if (CheckIfCanFall())
             {
                 //Đảm bảo 0 dashing quá xa sau khi fall
-                _playerStateManager.GetRigidBody2D().velocity = Vector2.zero;
+                _playerStateManager.GetRigidBody2D().linearVelocity = Vector2.zero;
 
                 _playerStateManager.ChangeState(_playerStateManager.fallState);
             }
@@ -72,7 +72,7 @@ public class DashState : PlayerBaseState
 
     private bool CheckIfCanFall()
     {
-        return _playerStateManager.GetRigidBody2D().velocity.y < -GameConstants.NEAR_ZERO_THRESHOLD;
+        return _playerStateManager.GetRigidBody2D().linearVelocity.y < -GameConstants.NEAR_ZERO_THRESHOLD;
     }
 
     private bool CheckIfCanWallSlide()
@@ -99,9 +99,9 @@ public class DashState : PlayerBaseState
         //Chứ 0 phải dash thẳng trên 0 1 đoạn
 
         if (_playerStateManager.GetIsFacingRight())
-            _playerStateManager.GetRigidBody2D().velocity = new Vector2(_playerStateManager.GetPlayerStats.DashForce.x, 0f);
+            _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetPlayerStats.DashForce.x, 0f);
         else
-            _playerStateManager.GetRigidBody2D().velocity = new Vector2(-_playerStateManager.GetPlayerStats.DashForce.x, 0f);
+            _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(-_playerStateManager.GetPlayerStats.DashForce.x, 0f);
     }
 
     private void HandleIfPrevStateWallSlide()

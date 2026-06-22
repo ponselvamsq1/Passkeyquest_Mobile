@@ -10,7 +10,7 @@ public class TrunkAttackState : MEnemiesAttackState
         _charactersManager = charactersManager;
         _trunkManager = (TrunkManager)charactersManager;
         _trunkManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.ETrunkState.attack);
-        _trunkManager.GetRigidbody2D().velocity = Vector2.zero;
+        _trunkManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         //Debug.Log("Attack");
     }
 

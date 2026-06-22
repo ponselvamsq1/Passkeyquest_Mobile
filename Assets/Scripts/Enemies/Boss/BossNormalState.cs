@@ -10,7 +10,7 @@ public class BossNormalState : MEnemiesBaseState
     {
         _bossManager = (BossStateManager)charactersManager;
         _bossManager.Animator.SetInteger(GameConstants.ANIM_PARA_STATE, (int)GameEnums.EBossState.idleShield);
-        _bossManager.GetRigidbody2D().velocity = Vector2.zero;
+        _bossManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         _bossManager.WeakState.IsFirstEnterState = true; //Reset cho Weak State
         Debug.Log("Normal");
     }

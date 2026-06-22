@@ -44,8 +44,8 @@ public class BossParticleState : MEnemiesAttackState
     public override void FixedUpdate()
     {
         if (_bossManager.GetIsFacingRight())
-            _bossManager.GetRigidbody2D().velocity = new Vector2(_bossManager.ParticleOnSpeed, 0f);
+            _bossManager.GetRigidbody2D().linearVelocity = new Vector2(_bossManager.ParticleOnSpeed, 0f);
         else
-            _bossManager.GetRigidbody2D().velocity = new Vector2(-_bossManager.ParticleOnSpeed, 0f);
+            _bossManager.GetRigidbody2D().linearVelocity = new Vector2(-_bossManager.ParticleOnSpeed, 0f);
     }
 }

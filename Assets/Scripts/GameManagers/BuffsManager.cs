@@ -26,9 +26,6 @@ public class BuffsManager : BaseSingleton<BuffsManager>
         base.Awake();
     }
 
-   
-    
-
     public void EnableTipSkipPanel()
     {
         Time.timeScale = 0;
@@ -55,8 +52,6 @@ public class BuffsManager : BaseSingleton<BuffsManager>
         Time.timeScale = 1;
     }
     
-   
-
    
     private void Start()
     {
@@ -87,7 +82,6 @@ public class BuffsManager : BaseSingleton<BuffsManager>
             opendoor.SetActive(false);
            
         }
-
        
         if(PlayerPrefs.GetInt("hint", 0)==1)
         {
@@ -102,7 +96,6 @@ public class BuffsManager : BaseSingleton<BuffsManager>
 
     public void GameWin()
     {
-        
        
         winpanel.SetActive(true);
         
@@ -114,11 +107,7 @@ public class BuffsManager : BaseSingleton<BuffsManager>
         winpanel2.SetActive(true);
        
     }
-
-    public void NextlevelTwo()
-    {
-        GameManager.Instance.SwitchToScene(2);
-    }
+    
 
     public void BackHome_BuffManager()
     {
@@ -129,8 +118,7 @@ public class BuffsManager : BaseSingleton<BuffsManager>
 
     public void Buff_Reloadscene()
     {
-       // GameManager.Instance.ReloadScene();
-        //SceneManager.loadedScene("")
+       
         GameManager.Instance.Playagian();
         SoundsManager.Instance.PlaySfx(GameEnums.ESoundName.ButtonSelectedSfx, 1.0f);
     }

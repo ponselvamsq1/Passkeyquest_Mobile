@@ -30,8 +30,8 @@ public class BossChargeState : MEnemiesAttackState
     public override void FixedUpdate()
     {
         if (_bossManager.GetIsFacingRight())
-            _bossManager.GetRigidbody2D().velocity = new Vector2(_bossManager.ChargeSpeed, 0f);
+            _bossManager.GetRigidbody2D().linearVelocity = new Vector2(_bossManager.ChargeSpeed, 0f);
         else
-            _bossManager.GetRigidbody2D().velocity = new Vector2(-_bossManager.ChargeSpeed, 0f);
+            _bossManager.GetRigidbody2D().linearVelocity = new Vector2(-_bossManager.ChargeSpeed, 0f);
     }
 }

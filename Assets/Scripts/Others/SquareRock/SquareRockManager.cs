@@ -83,16 +83,16 @@ public class SquareRockManager : GameObjectManager
             switch (_moveDir)
             {
                 case GameEnums.ERockMove.Left:
-                    _rb.velocity = new Vector2(-_tempSpeed, 0f);
+                    _rb.linearVelocity = new Vector2(-_tempSpeed, 0f);
                     break;
                 case GameEnums.ERockMove.Right:
-                    _rb.velocity = new Vector2(_tempSpeed, 0f);
+                    _rb.linearVelocity = new Vector2(_tempSpeed, 0f);
                     break;
                 case GameEnums.ERockMove.Top:
-                    _rb.velocity = new Vector2(0f, _tempSpeed);
+                    _rb.linearVelocity = new Vector2(0f, _tempSpeed);
                     break;
                 case GameEnums.ERockMove.Bottom:
-                    _rb.velocity = new Vector2(0f, -_tempSpeed);
+                    _rb.linearVelocity = new Vector2(0f, -_tempSpeed);
                     break;
             }
         }
@@ -101,10 +101,10 @@ public class SquareRockManager : GameObjectManager
             switch (_moveDir)
             {
                 case GameEnums.ERockMove.Top:
-                    _rb.velocity = new Vector2(0f, _tempSpeed);
+                    _rb.linearVelocity = new Vector2(0f, _tempSpeed);
                     break;
                 case GameEnums.ERockMove.Bottom:
-                    _rb.velocity = new Vector2(0f, -_tempSpeed);
+                    _rb.linearVelocity = new Vector2(0f, -_tempSpeed);
                     break;
             }
         }

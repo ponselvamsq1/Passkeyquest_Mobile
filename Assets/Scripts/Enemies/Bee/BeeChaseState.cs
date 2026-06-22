@@ -20,7 +20,7 @@ public class BeeChaseState : MEnemiesAttackState
             _beeManager.MustAttack = true;
             //SoundsManager.Instance.PlaySfx(GameEnums.ESoundName.BeeAngrySfx, 1.0f);
         }
-        _beeManager.GetRigidbody2D().velocity = Vector2.zero;
+        _beeManager.GetRigidbody2D().linearVelocity = Vector2.zero;
         //Debug.Log("Bee Chase");
     }
 

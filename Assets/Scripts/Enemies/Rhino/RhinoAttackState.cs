@@ -48,8 +48,8 @@ public class RhinoAttackState : MEnemiesAttackState
     protected override void Attack()
     {
         if (_rhinoManager.GetIsFacingRight())
-            _rhinoManager.GetRigidbody2D().velocity = new Vector2(_rhinoManager.MEnemiesSO.ChaseSpeed.x, _rhinoManager.GetRigidbody2D().velocity.y);
+            _rhinoManager.GetRigidbody2D().linearVelocity = new Vector2(_rhinoManager.MEnemiesSO.ChaseSpeed.x, _rhinoManager.GetRigidbody2D().linearVelocity.y);
         else
-            _rhinoManager.GetRigidbody2D().velocity = new Vector2(-_rhinoManager.MEnemiesSO.ChaseSpeed.x, _rhinoManager.GetRigidbody2D().velocity.y);
+            _rhinoManager.GetRigidbody2D().linearVelocity = new Vector2(-_rhinoManager.MEnemiesSO.ChaseSpeed.x, _rhinoManager.GetRigidbody2D().linearVelocity.y);
     }
 }

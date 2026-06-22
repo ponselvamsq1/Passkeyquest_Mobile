@@ -9,7 +9,7 @@ public class Checktipreach : MonoBehaviour
     {
         if (collision.CompareTag(GameConstants.PLAYER_TAG))
         {
-            Debug.Log("Enter player after fan");
+           
             GameManager.Instance.ischeck = true;
             GameManager.Instance.checktipcount = 0;
         }

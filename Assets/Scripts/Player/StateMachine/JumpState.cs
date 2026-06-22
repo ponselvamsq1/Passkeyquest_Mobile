@@ -49,7 +49,7 @@ public class JumpState : PlayerBaseState
 
     private bool CheckIfCanFall()
     {
-        return _playerStateManager.GetRigidBody2D().velocity.y < -GameConstants.NEAR_ZERO_THRESHOLD;
+        return _playerStateManager.GetRigidBody2D().linearVelocity.y < -GameConstants.NEAR_ZERO_THRESHOLD;
     }
 
     private bool CheckIfCanWallSlide()
@@ -81,22 +81,22 @@ public class JumpState : PlayerBaseState
         {
             if (_jumpForceApplied != 0)
             {
-                float xVelo = _playerStateManager.GetRigidBody2D().velocity.x;
+                float xVelo = _playerStateManager.GetRigidBody2D().linearVelocity.x;
                 float yVelo = _jumpForceApplied;
-                _playerStateManager.GetRigidBody2D().velocity = new(xVelo, yVelo);
+                _playerStateManager.GetRigidBody2D().linearVelocity = new(xVelo, yVelo);
             }
             else
             {
-                float xVelo = _playerStateManager.GetRigidBody2D().velocity.x;
+                float xVelo = _playerStateManager.GetRigidBody2D().linearVelocity.x;
                 float yVelo = _playerStateManager.GetPlayerStats.SpeedY;
-                _playerStateManager.GetRigidBody2D().velocity = new(xVelo, yVelo);
+                _playerStateManager.GetRigidBody2D().linearVelocity = new(xVelo, yVelo);
             }
         }
         else
         {
-            float xVelo = _playerStateManager.GetRigidBody2D().velocity.x;
+            float xVelo = _playerStateManager.GetRigidBody2D().linearVelocity.x;
             float yVelo = _playerStateManager.GetPlayerStats.SpeedY * ((PlayerJumpBuff)BuffsManager.Instance.GetTypeOfBuff(EBuffs.Jump)).JumpMutiplier;
-            _playerStateManager.GetRigidBody2D().velocity = new (xVelo, yVelo);
+            _playerStateManager.GetRigidBody2D().linearVelocity = new (xVelo, yVelo);
         }
 
         SoundsManager.Instance.PlaySfx(ESoundName.PlayerJumpSfx, 1.0f);
@@ -115,7 +115,7 @@ public class JumpState : PlayerBaseState
     {
         if (Input.GetButton(GameConstants.JUMP_BUTTON) && Time.time - _playerStateManager.JumpStart < _playerStateManager.GetPlayerStats.JumpTime)
         {
-            _playerStateManager.GetRigidBody2D().velocity = new Vector2(_playerStateManager.GetRigidBody2D().velocity.x, _playerStateManager.GetRigidBody2D().velocity.y * _playerStateManager.GetPlayerStats.JumpSpeedFactor);
+            _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetRigidBody2D().linearVelocity.x, _playerStateManager.GetRigidBody2D().linearVelocity.y * _playerStateManager.GetPlayerStats.JumpSpeedFactor);
             //Debug.Log("hereeee");
         }
         //Hold càng lâu nhảy càng cao (miễn là trong thgian cho phép)
@@ -125,9 +125,9 @@ public class JumpState : PlayerBaseState
     {
         if (_playerStateManager.GetDirX() != 0)
             if (!BuffsManager.Instance.GetTypeOfBuff(EBuffs.Speed).IsAllowToUpdate)
-                _playerStateManager.GetRigidBody2D().velocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * _playerStateManager.GetDirX(), _playerStateManager.GetRigidBody2D().velocity.y);
+                _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * _playerStateManager.GetDirX(), _playerStateManager.GetRigidBody2D().linearVelocity.y);
             else
-                _playerStateManager.GetRigidBody2D().velocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * ((PlayerSpeedBuff)BuffsManager.Instance.GetTypeOfBuff(EBuffs.Speed)).SpeedMultiplier * _playerStateManager.GetDirX(), _playerStateManager.GetRigidBody2D().velocity.y);
+                _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetPlayerStats.SpeedX * ((PlayerSpeedBuff)BuffsManager.Instance.GetTypeOfBuff(EBuffs.Speed)).SpeedMultiplier * _playerStateManager.GetDirX(), _playerStateManager.GetRigidBody2D().linearVelocity.y);
     }
 
 }

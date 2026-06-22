@@ -35,9 +35,9 @@ public class PigAttackRedState : MEnemiesAttackState
     protected override void Attack()
     {
         if (_pigManager.GetIsFacingRight())
-            _pigManager.GetRigidbody2D().velocity = new Vector2(_pigManager.ChaseSpeedRedForm, _pigManager.GetRigidbody2D().velocity.y);
+            _pigManager.GetRigidbody2D().linearVelocity = new Vector2(_pigManager.ChaseSpeedRedForm, _pigManager.GetRigidbody2D().linearVelocity.y);
         else
-            _pigManager.GetRigidbody2D().velocity = new Vector2(-_pigManager.ChaseSpeedRedForm, _pigManager.GetRigidbody2D().velocity.y);
+            _pigManager.GetRigidbody2D().linearVelocity = new Vector2(-_pigManager.ChaseSpeedRedForm, _pigManager.GetRigidbody2D().linearVelocity.y);
     }
 }
 
