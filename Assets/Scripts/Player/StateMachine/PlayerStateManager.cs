@@ -56,7 +56,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _unlockedDbJump;
     private bool _unlockedWallSlide;
     private bool _unlockedDash;
-
+    private bool _isHighJump;   // set by whichever jump button was tapped
     [Header("Dust")]
     [SerializeField] ParticleSystem dustPS;
     private ParticleSystem.VelocityOverLifetimeModule dustVelocity;
@@ -154,6 +154,7 @@ public class PlayerStateManager : MonoBehaviour
     
     private void Awake()
     {
+        Input.multiTouchEnabled = true;
         GetReferenceComponents();
     }
 
@@ -472,8 +473,8 @@ public class PlayerStateManager : MonoBehaviour
 
     void Update()
     {
-        if (_hasBeenDisabled)
-            return;
+        if (_hasBeenDisabled || _isInteractingWithNPC)
+            jumpPressed = false; 
 
         if (PlayerHealthManager.Instance.CurrentHP == 0)
         {
@@ -603,17 +604,23 @@ public class PlayerStateManager : MonoBehaviour
           dirX = 0.7f;
 
       
-      if (Input.GetKeyDown(KeyCode.Space) || jumpPressed)
+      // Keyboard
+      // Keyboard: Space = high jump
+      if (Input.GetKeyDown(KeyCode.Space))
+      {
+          _isHighJump = true;
+          jumpPressed = true;
+      }
+
+      if (jumpPressed)
       {
           jumpPressed = false;
 
-          // NORMAL JUMP
           if (_canJump)
           {
               _jumpStart = Time.time;
               ChangeState(jumpState);
           }
-          // DOUBLE JUMP (ONLY AFTER SKILL UNLOCK)
           else if (_canDbJump && _unlockedDbJump)
           {
               _canDbJump = false;
@@ -622,30 +629,33 @@ public class PlayerStateManager : MonoBehaviour
           }
       }
 
-      // HOLD FOR HIGH JUMP
-      bool isHoldingJump = Input.GetKey(KeyCode.Space) || jumpHold;
+      // HIGH JUMP: low gravity while rising. LOW JUMP: normal gravity.
+      float highJumpGravityMultiplier = 0.22f;   // lower = higher high jump
+      float lowJumpGravityMultiplier  = 0.52f;   // lower = higher low jump (1.0 = original)
+      float maxJumpTime = 0.90f;                 // longer = higher (applies to both)
 
-      float maxJumpHoldTime = 0.90f;
-
-      if (isHoldingJump && rb.linearVelocity.y > 0.1f)
+      if (rb.linearVelocity.y > 0.1f && Time.time - _jumpStart < maxJumpTime)
       {
-          // LONG PRESS = HIGHER JUMP
-          if (Time.time - _jumpStart < maxJumpHoldTime)
-          {
-              rb.gravityScale = _playerStats.GravScale * 0.26f;
-          }
-          else
-          {
-              rb.gravityScale = _playerStats.GravScale;
-          }
+          float mult = _isHighJump ? highJumpGravityMultiplier : lowJumpGravityMultiplier;
+          rb.gravityScale = _playerStats.GravScale * mult;
       }
       else
-      {
           rb.gravityScale = _playerStats.GravScale;
-      }
-       
+
+     
     }
 
+    public void LowJumpButtonDown()
+    {
+        _isHighJump = false;
+        jumpPressed = true;
+    }
+
+    public void HighJumpButtonDown()
+    {
+        _isHighJump = true;
+        jumpPressed = true;
+    }
     public void FlippingSprite()
     {
        
@@ -963,11 +973,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
 /// JUMP BUTTON PRESS
-public void JumpButtonDown()
-{
-    jumpPressed = true;
-    jumpHold = true;
-}
+
 
 // JUMP BUTTON RELEASE
 public void JumpButtonUp()
@@ -983,6 +989,10 @@ public void OnClick_Soundsetting()
 public void UpdateKeyCountUI(int currentKeys)
 {
     keyCountText.text = "Keys : " + currentKeys + "/" + 5;
+}
+public void JumpButtonDown()
+{
+    jumpPressed = true;
 }
 
 }

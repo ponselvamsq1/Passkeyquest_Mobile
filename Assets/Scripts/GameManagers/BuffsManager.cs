@@ -17,6 +17,7 @@ public class BuffsManager : BaseSingleton<BuffsManager>
     public GameObject uiTipsPanel,key1,key2,key3,key4,key5,winpanel,winpanel2,opendoor,tipclose1,tipclose2, wincongrats,tipskippanel,tiphintpanel;
     public Button bulpimg;
     public GameObject pausepage;
+    public GameObject lastsummary;
    
 
     private Dictionary<GameEnums.EBuffs, PlayerBuffs> _dictBuffs = new();
@@ -118,7 +119,7 @@ public class BuffsManager : BaseSingleton<BuffsManager>
 
     public void Buff_Reloadscene()
     {
-       
+       lastsummary.SetActive(false);
         GameManager.Instance.Playagian();
         SoundsManager.Instance.PlaySfx(GameEnums.ESoundName.ButtonSelectedSfx, 1.0f);
     }

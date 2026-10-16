@@ -151,6 +151,7 @@ public class GameManager : BaseSingleton<GameManager>
 
     public void Playagian()
     {
+       
         Time.timeScale = 1.0f;
         checktipcount = 0;
         Keycount = 0;
