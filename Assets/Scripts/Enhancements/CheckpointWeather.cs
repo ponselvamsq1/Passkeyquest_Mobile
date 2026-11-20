@@ -20,6 +20,10 @@ public class CheckpointWeather : MonoBehaviour
     readonly HashSet<CheckPointController> _seen = new HashSet<CheckPointController>();
     WeatherKind _current = WeatherKind.None;
 
+    // Weather the player is in now (the player uses it: slower in snow, slippery in rain).
+    public static WeatherKind Current { get; private set; }
+    void OnDestroy() => Current = WeatherKind.None;
+
     [Tooltip("Seconds a new weather takes to build up from nothing to full strength.")]
     public float rampTime = 6f;
     readonly Dictionary<ParticleSystem, float> _fullRate = new Dictionary<ParticleSystem, float>();
@@ -27,6 +31,7 @@ public class CheckpointWeather : MonoBehaviour
 
     void Start()
     {
+        Current = WeatherKind.None;
         _cam = Camera.main;
         _root = new GameObject("Weather").transform;
         _root.SetParent(transform, false);
@@ -86,6 +91,7 @@ public class CheckpointWeather : MonoBehaviour
         if (_fx.TryGetValue(_current, out var old))
             foreach (var ps in old) if (ps) ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);   // fades out naturally
         _current = w;
+        Current = w;
         if (w == WeatherKind.None) return;
         if (!_fx.TryGetValue(w, out var list))
         {

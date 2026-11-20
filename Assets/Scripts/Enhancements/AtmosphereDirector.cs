@@ -51,6 +51,9 @@ public class AtmosphereDirector : MonoBehaviour
         _vig = MakeSR("Vignette", AtmosphereFX.VignetteSprite, AtmosphereFX.FrontOrder + 30);
         _moonGlow = MakeSR("MoonGlow", AtmosphereFX.SoftSprite, AtmosphereFX.FrontOrder + 5);
         _moon = MakeSR("Moon", AtmosphereFX.MoonSprite, AtmosphereFX.FrontOrder + 6);
+        // the moon is part of the sky: draw it behind walls, ground and hills
+        _moon.sortingLayerName = _moonGlow.sortingLayerName = AtmosphereFX.BackLayer;
+        _moonGlow.sortingOrder = 32000; _moon.sortingOrder = 32001;
 
         if (keyGlow)
             foreach (var sr in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))

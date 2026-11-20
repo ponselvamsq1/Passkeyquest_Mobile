@@ -573,6 +573,30 @@ public class PlayerStateManager : MonoBehaviour
     private void FixedUpdate()
     {
         _state.FixedUpdate();
+        ApplyWeather();
+    }
+
+    // Checkpoint weather changes how the ground feels (only while standing on it):
+    // snow = slower walking, rain = a little slippery (short slide when stopping or turning).
+    const float SnowWalkFactor = 0.6f;
+    const float RainGrip = 14f;   // speed change per second on wet ground (walk speed 5.5 -> about 0.4 s slide)
+    float _weatherVx;
+
+    private void ApplyWeather()
+    {
+        var v = rb.linearVelocity;
+        bool skip = _hasDead || _isInteractingWithNPC || !isOnGround
+                    || _state is DashState || _state is GotHitState || _state is WallJumpState || _state is WallSlideState;
+        if (!skip)
+        {
+            var w = CheckpointWeather.Current;
+            if (w == WeatherKind.Snow || w == WeatherKind.Blizzard)
+                v.x *= SnowWalkFactor;
+            else if (w == WeatherKind.Rain)
+                v.x = Mathf.MoveTowards(_weatherVx, v.x, RainGrip * Time.fixedDeltaTime);
+            rb.linearVelocity = v;
+        }
+        _weatherVx = v.x;
     }
 
     private void OnDrawGizmos()
