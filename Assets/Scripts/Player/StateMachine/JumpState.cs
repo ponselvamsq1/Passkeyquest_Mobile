@@ -44,7 +44,9 @@ public class JumpState : PlayerBaseState
 
     private bool CheckIfCanDbJump()
     {
-        return Input.GetButtonDown(GameConstants.JUMP_BUTTON) && !_playerStateManager.GetIsWallTouch();
+        // ignore the same key press that started this jump (otherwise every short jump became a double jump)
+        return Input.GetButtonDown(GameConstants.JUMP_BUTTON) && !_playerStateManager.GetIsWallTouch()
+            && Time.time - _playerStateManager.JumpStart > 0.05f;
     }
 
     private bool CheckIfCanFall()
@@ -113,7 +115,8 @@ public class JumpState : PlayerBaseState
 
     private void PhysicsUpdateVertical()
     {
-        if (Input.GetButton(GameConstants.JUMP_BUTTON) && Time.time - _playerStateManager.JumpStart < _playerStateManager.GetPlayerStats.JumpTime)
+        // Hold-Space boost disabled: it made the keyboard jump much higher than the touch jump.
+        if (false && Input.GetButton(GameConstants.JUMP_BUTTON) && Time.time - _playerStateManager.JumpStart < _playerStateManager.GetPlayerStats.JumpTime)
         {
             _playerStateManager.GetRigidBody2D().linearVelocity = new Vector2(_playerStateManager.GetRigidBody2D().linearVelocity.x, _playerStateManager.GetRigidBody2D().linearVelocity.y * _playerStateManager.GetPlayerStats.JumpSpeedFactor);
             //Debug.Log("hereeee");

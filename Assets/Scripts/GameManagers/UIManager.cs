@@ -130,6 +130,15 @@ public class UIManager : BaseSingleton<UIManager>
         _loosePanel.SetActive(false);
     }
 
+    public bool IsLoosePanelOpen => _loosePanel && _loosePanel.activeInHierarchy;
+
+    // Shows the "Mission Failed" popup again (Retry / Home) without the delay.
+    public void ShowLoosePanelNow()
+    {
+        _loosePanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
     public void IncreaseTransitionCanvasOrder()
     {
         _canPopUpPanel = false;
@@ -231,6 +240,11 @@ public class UIManager : BaseSingleton<UIManager>
     }
 
     public void OnClick_Exit()
+    {
+        ExitConfirmPopup.Show(QuitGame);
+    }
+
+    private void QuitGame()
     {
         //Application.OpenURL("https://beta.skillhub.sq1.security/course/view.php?id=3");
         //Application.OpenURL("http://192.168.8.59/course/view.php?id=3");

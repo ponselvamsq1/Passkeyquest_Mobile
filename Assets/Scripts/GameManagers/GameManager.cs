@@ -91,6 +91,14 @@ public class GameManager : BaseSingleton<GameManager>
     }
     
 
+    // The transition animation normally re-allows popups (settings, credits) through an animation
+    // event. If that event is missed, popups stay blocked for the whole level, so re-allow them here too.
+    private IEnumerator UnlockPopupsAfterTransition()
+    {
+        yield return new WaitForSecondsRealtime(_delayTrans + 1.5f);
+        UIManager.Instance.DecreaseTransitionCanvasOrder();
+    }
+
     public void SwitchToScene(int sceneIndex)
     {
         StartCoroutine(SwitchScene(sceneIndex));
@@ -107,6 +115,7 @@ public class GameManager : BaseSingleton<GameManager>
             _deleteScene1Data = true;
         SceneManager.LoadSceneAsync(sceneIndex);
         UIManager.Instance.TriggerAnimation(GameConstants.SCENE_TRANS_START);
+        StartCoroutine(UnlockPopupsAfterTransition());
         SoundsManager.Instance.PlaySfx(GameEnums.ESoundName.SceneEntrySfx, 1.0f);
         if (_isReplay)
         {

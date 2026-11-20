@@ -57,8 +57,14 @@ public class Tipskipcontroller : MonoBehaviour
         nextButton.interactable = currentIndex < textObjects.Length - 1;
         
         if (currentIndex >= textObjects.Length - 1)
+        {
             takequizButton.gameObject.SetActive(true);
+            ReachedAllTips = true;
+        }
     }
+
+    // Read by BuffsManager when the tips popup closes (shows Retry / Home once every tip was read).
+    public bool ReachedAllTips { get; private set; }
 
     public void Enablequizpanel()
     {

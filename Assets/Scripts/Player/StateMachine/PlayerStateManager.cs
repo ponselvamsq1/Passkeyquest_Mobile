@@ -48,6 +48,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _isHitFromRightSide;
     private bool _isOnPlatform;
     private bool _hasDead; //Tránh HandleDeadState bị gọi nhiều lần
+    public bool IsDead => _hasDead;
     private bool _hasStart;
     private bool _canJump;
     private bool _forceApply;
@@ -605,10 +606,10 @@ public class PlayerStateManager : MonoBehaviour
 
       
       // Keyboard
-      // Keyboard: Space = high jump
+      // Keyboard: Space = normal (low) jump, same height as the touch low-jump button
       if (Input.GetKeyDown(KeyCode.Space))
       {
-          _isHighJump = true;
+          _isHighJump = false;
           jumpPressed = true;
       }
 
@@ -634,7 +635,9 @@ public class PlayerStateManager : MonoBehaviour
       float lowJumpGravityMultiplier  = 0.52f;   // lower = higher low jump (1.0 = original)
       float maxJumpTime = 0.90f;                 // longer = higher (applies to both)
 
-      if (rb.linearVelocity.y > 0.1f && Time.time - _jumpStart < maxJumpTime)
+      // The double jump already launches 1.6x faster, so it uses normal gravity (no floaty boost):
+      // otherwise a double jump after a high jump went about 10 units up.
+      if (rb.linearVelocity.y > 0.1f && Time.time - _jumpStart < maxJumpTime && !(_state is DoubleJumpState))
       {
           float mult = _isHighJump ? highJumpGravityMultiplier : lowJumpGravityMultiplier;
           rb.gravityScale = _playerStats.GravScale * mult;
